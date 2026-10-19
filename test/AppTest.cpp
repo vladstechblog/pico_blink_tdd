@@ -62,6 +62,13 @@ TEST(App, Blink){
   mock().expectOneCall("sleep_ms")
     .withUnsignedIntParameter("delay_ms", BLINK_DELAY);
 
+  mock().expectOneCall("gpio_put")
+    .withUnsignedIntParameter("pinNum", LED_PIN)
+    .withBoolParameter("value", false);
+
+  mock().expectOneCall("sleep_ms")
+    .withUnsignedIntParameter("delay_ms", BLINK_DELAY);
+
   blink(LED_PIN, BLINK_DELAY);
 }
 
