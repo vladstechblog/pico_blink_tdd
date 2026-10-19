@@ -1,11 +1,7 @@
 #ifndef D_App_H
 #define D_App_H
 
-/**********************************************************
- *
- * App is responsible for ...
- *
- **********************************************************/
+#define LED_PIN 15
 
 void app_main(void);
 

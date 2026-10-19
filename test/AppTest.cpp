@@ -28,10 +28,8 @@ TEST_GROUP(App)
 };
 
 TEST(App, CallsGPIOInitWithCorrectArguments){
-  unsigned int led_pin = 15;
-
   mock().expectOneCall("gpio_init")
-    .withUnsignedIntParameter("pinNum", led_pin);
+    .withUnsignedIntParameter("pinNum", LED_PIN);
 
   app_main();
 }
