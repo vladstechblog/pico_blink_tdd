@@ -60,8 +60,8 @@ TEST(App, Blink){
     .withBoolParameter("value", true);
 
   mock().expectOneCall("sleep_ms")
-    .withUnsignedIntParameter("delay_ms", 500);
+    .withUnsignedIntParameter("delay_ms", BLINK_DELAY);
 
-  blink();
+  blink(LED_PIN, BLINK_DELAY);
 }
 

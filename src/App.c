@@ -7,12 +7,12 @@ void configure_led_gpio_pin(uint pinNumber, bool pinDirection){
   gpio_set_dir(pinNumber, pinDirection); 
 }
 
-void blink(){
-  gpio_put(LED_PIN, true);
-  sleep_ms(500);
+void blink(uint ledPin, uint32_t delay){
+  gpio_put(ledPin, true);
+  sleep_ms(delay);
 }
 
 void app_main(void){
   configure_led_gpio_pin(LED_PIN, GPIO_OUT);
-  blink();
+  blink(LED_PIN, BLINK_DELAY);
 }
