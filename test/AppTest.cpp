@@ -21,6 +21,11 @@ void gpio_put(uint pinNum, bool value){
     ->withBoolParameters("value", value);
 }
 
+void sleep_ms(uint32_t delay_ms){
+  mock_c()->actualCall("sleep_ms")
+    ->withUnsignedIntParameters("delay_ms", delay_ms);
+}
+
 }
 
 #include "CppUTest/TestHarness.h"
@@ -53,6 +58,9 @@ TEST(App, Blink){
   mock().expectOneCall("gpio_put")
     .withUnsignedIntParameter("pinNum", LED_PIN)
     .withBoolParameter("value", true);
+
+  mock().expectOneCall("sleep_ms")
+    .withUnsignedIntParameter("delay_ms", 500);
 
   blink();
 }
