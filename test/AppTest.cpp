@@ -26,7 +26,6 @@ void sleep_ms(uint32_t delay_ms){
     ->withUnsignedIntParameters("delay_ms", delay_ms);
 }
 
-
 }
 
 #include "CppUTest/TestHarness.h"
