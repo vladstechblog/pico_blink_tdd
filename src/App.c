@@ -1,6 +1,7 @@
 #include "hardware/gpio.h"
 #include "pico/time.h"
 #include "App.h"
+#include "Util.h"
 
 void configure_led_gpio_pin(uint pinNumber, bool pinDirection){
   gpio_init(pinNumber); 
@@ -16,5 +17,7 @@ void blink(uint ledPin, uint32_t delay){
 
 void app_main(void){
   configure_led_gpio_pin(LED_PIN, GPIO_OUT);
-  blink(LED_PIN, BLINK_DELAY);
+  
+  while(always_true())
+    blink(LED_PIN, BLINK_DELAY);
 }
