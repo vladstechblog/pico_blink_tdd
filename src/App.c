@@ -3,5 +3,5 @@
 
 void app_main(void){
   gpio_init(LED_PIN); 
-  //TODO blink;
+  gpio_set_dir(LED_PIN, GPIO_OUT); 
 }
