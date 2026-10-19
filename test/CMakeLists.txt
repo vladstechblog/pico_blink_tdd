@@ -1,10 +1,11 @@
 include(include_local_cpputest_git_repo.cmake)
 
-add_executable(appTestRunner appTestRunner.cpp)
+add_executable(appTestRunner appTestRunner.cpp ../src/App.c)
+
+target_include_directories(appTestRunner PUBLIC ../src/include include)
 target_link_libraries(
   appTestRunner
   PUBLIC
   CppUTest
   CppUTestExt
-  App
 )

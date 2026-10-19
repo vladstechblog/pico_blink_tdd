@@ -15,6 +15,12 @@ void gpio_set_dir(uint pinNum, bool pinDir){
     ->withBoolParameters("pinDir", pinDir);
 }
 
+void gpio_put(uint pinNum, bool value){
+  mock_c()->actualCall("gpio_put")
+    ->withUnsignedIntParameters("pinNum", pinNum)
+    ->withBoolParameters("value", value);
+}
+
 }
 
 #include "CppUTest/TestHarness.h"
@@ -41,5 +47,13 @@ TEST(App, LedPinSetupTest){
     .withBoolParameter("pinDir", GPIO_OUT);
 
   configure_led_gpio_pin(LED_PIN, GPIO_OUT);
+}
+
+TEST(App, Blink){
+  mock().expectOneCall("gpio_put")
+    .withUnsignedIntParameter("pinNum", LED_PIN)
+    .withBoolParameter("value", true);
+
+  blink();
 }
 
