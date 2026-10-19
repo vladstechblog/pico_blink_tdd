@@ -9,6 +9,11 @@ void gpio_init(uint pinNum){
     ->withUnsignedIntParameters("pinNum", pinNum);
 }
 
+void gpio_set_dir(uint pinNum, bool pinDir){
+  mock_c()->actualCall("gpio_set_dir")
+    ->withUnsignedIntParameters("pinNum", pinNum)
+    ->withBoolParameters("pinDir", pinDir);
+}
 
 }
 
@@ -30,6 +35,10 @@ TEST_GROUP(App)
 TEST(App, CallsGPIOInitWithCorrectArguments){
   mock().expectOneCall("gpio_init")
     .withUnsignedIntParameter("pinNum", LED_PIN);
+
+  mock().expectOneCall("gpio_set_dir")
+    .withUnsignedIntParameter("pinNum", LED_PIN)
+    .withBoolParameter("pinDir", GPIO_OUT);
 
   app_main();
 }
