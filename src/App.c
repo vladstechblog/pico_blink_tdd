@@ -2,6 +2,6 @@
 #include "App.h"
 
 void app_main(void){
-  gpio_init(15); 
+  gpio_init(LED_PIN); 
   //TODO blink;
 }
