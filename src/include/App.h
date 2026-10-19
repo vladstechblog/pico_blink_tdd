@@ -4,5 +4,6 @@
 #define LED_PIN 15
 
 void app_main(void);
+void configure_led_gpio_pin(uint, bool);
 
 #endif  /* D_FakeApp_H */

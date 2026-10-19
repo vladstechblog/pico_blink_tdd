@@ -32,7 +32,7 @@ TEST_GROUP(App)
     }
 };
 
-TEST(App, CallsGPIOInitWithCorrectArguments){
+TEST(App, LedPinSetupTest){
   mock().expectOneCall("gpio_init")
     .withUnsignedIntParameter("pinNum", LED_PIN);
 
@@ -40,6 +40,6 @@ TEST(App, CallsGPIOInitWithCorrectArguments){
     .withUnsignedIntParameter("pinNum", LED_PIN)
     .withBoolParameter("pinDir", GPIO_OUT);
 
-  app_main();
+  configure_led_gpio_pin(LED_PIN, GPIO_OUT);
 }
 
