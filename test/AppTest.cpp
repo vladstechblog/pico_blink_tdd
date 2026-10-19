@@ -26,6 +26,11 @@ void sleep_ms(uint32_t delay_ms){
     ->withUnsignedIntParameters("delay_ms", delay_ms);
 }
 
+bool always_true(void){
+  return mock_c()->actualCall("always_true")
+    ->boolReturnValue();
+}
+
 }
 
 #include "CppUTest/TestHarness.h"
@@ -58,12 +63,23 @@ TEST_GROUP(App){
       .withUnsignedIntParameter("delay_ms", BLINK_DELAY);
   }
 
+  void record_expectations_awlays_true_returns_true(){
+    mock().expectOneCall("always_true")
+      .andReturnValue(true);
+  }
+
+  void record_expectations_awlays_true_returns_false(){
+    mock().expectOneCall("always_true")
+      .andReturnValue(false);
+  }
+
   void setup(){
     //TODO
   }
 
   void teardown(){
-    mock().clear();;
+    mock().checkExpectations();
+    mock().clear();
   }
 };
 
@@ -71,20 +87,21 @@ TEST_GROUP(App){
 TEST(App, LedPinSetupTest){
   record_pin_setup_expectations();
   configure_led_gpio_pin(LED_PIN, GPIO_OUT);
-  mock().checkExpectations();
 }
 
 
 TEST(App, Blink){
   record_blink_expectations();
   blink(LED_PIN, BLINK_DELAY);
-  mock().checkExpectations();
 }
 
 
 TEST(App, AppMainConfiguresGPIOAndBlinks){
   record_pin_setup_expectations();
+  record_expectations_awlays_true_returns_true();
   record_blink_expectations();
+
+  //breaks infinite while() in app_main()
+  record_expectations_awlays_true_returns_false();
   app_main();
-  mock().checkExpectations();
 }
