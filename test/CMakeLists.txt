@@ -5,5 +5,6 @@ target_link_libraries(
   appTestRunner
   PUBLIC
   CppUTest
+  CppUTestExt
   App
 )
