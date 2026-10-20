@@ -19,7 +19,7 @@ cmake --build build_host/ -t appTestRunner
 
 ## Building Blink Binary
 
-Building the binary uploadable to the the Pico 2W board.
+Building the binary uploadable to the Pico 2W board.
 
 ```shell
 git clone https://github.com/vladstechblog/pico_blink_tdd
